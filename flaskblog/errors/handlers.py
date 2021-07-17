@@ -10,6 +10,6 @@ def error_404(error):
 def error_405(error):
     return render_template('errors/403.html'), 403
 
-@errors.app_errorhandler(500)
-def error_500(error):
-    return render_template('errors/500.html'), 500 
+# @errors.app_errorhandler(500)
+# def error_500(error):
+#     return render_template('errors/500.html'), 500 
