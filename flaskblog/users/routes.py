@@ -14,7 +14,7 @@ def register():
         return redirect(url_for('main.home'))
     form = RegistrationForm()
     if form.validate_on_submit():
-        hashed_password = bcrypt.generate_password_hash(form.password.data)
+        hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
 
         user = User(username= form.username.data, email=form.email.data, password=hashed_password)
         db.session.add(user)
@@ -95,7 +95,7 @@ def reset_token(token):
         flash('That is an invalid or expired token', 'warning')
         return redirect(url_for('users.reset_request'))
     if form.validate_on_submit():
-        hashed_password = bcrypt.generate_password_hash(form.password.data)
+        hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
 
         user.password = hashed_password
         db.session.commit()
