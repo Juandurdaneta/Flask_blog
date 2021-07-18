@@ -1,4 +1,3 @@
-import os
 from flask import render_template, url_for, flash, redirect, request, Blueprint
 from flask_login import login_user, current_user, logout_user, login_required
 from flaskblog import db, bcrypt
@@ -84,7 +83,7 @@ def reset_request():
         send_reset_email(user)
         flash('An email has been sent with instructions to reset your password', 'info')
         return redirect(url_for('users.login'))
-    return render_template('reset_request.html', title="Reset Password", form=form, test=os.environ.get('MAIL_USERNAME'))
+    return render_template('reset_request.html', title="Reset Password", form=form)
 
 @users.route("/reset_password/<token>", methods=['GET','POST'])
 def reset_token(token):
